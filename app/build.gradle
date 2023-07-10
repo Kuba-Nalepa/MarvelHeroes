@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+Properties properties = new Properties()
+File localPropertiesFile = project.rootProject.file("local.properties")
+
 android {
     namespace 'com.example.marvelheroes'
     compileSdk 34
@@ -10,11 +13,18 @@ android {
     defaultConfig {
         applicationId "com.example.marvelheroes"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        if(localPropertiesFile.exists()) {
+            properties.load(localPropertiesFile.newDataInputStream())
+            buildConfigField "String", "PUBLIC_API", "\"" + properties['publicKey'] + "\""
+            buildConfigField "String", "PRIVATE_API", "\"" + properties['privateKey'] + "\""
+            buildConfigField "String", "MD5_HASH", "\"" + properties['hash'] + "\""
+        }
     }
 
     buildFeatures {
@@ -38,15 +48,22 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1'
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
 
 
     // Navigation
@@ -54,7 +71,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+
 
     // Okhttp
     implementation "com.squareup.okhttp3:okhttp:4.10.0"

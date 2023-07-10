@@ -1,8 +1,8 @@
 package com.example.marvelheroes.domain.repositories
 
-import com.example.marvelheroes.domain.model.ComicBook
+import com.example.marvelheroes.data.model.ComicsItem
 
 interface ComicBooksDataSource {
 
-    suspend fun getComicBooks(): List<ComicBook>
+    suspend fun getComicBooks(): List<ComicsItem>
 }

@@ -1,9 +1,9 @@
 package com.example.marvelheroes.data.service
 
-import com.example.marvelheroes.domain.model.Character
-import com.example.marvelheroes.domain.model.ComicBook
+import com.example.marvelheroes.data.model.MarvelResponse
 import com.example.marvelheroes.data.model.CharacterDetails
-import com.example.marvelheroes.data.model.ComicBookDetails
+import com.example.marvelheroes.data.model.ComicsItem
+import com.example.marvelheroes.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -14,17 +14,17 @@ import retrofit2.http.Path
 
 interface MarvelService {
 
-    @GET("/characters")
-    suspend fun getAllCharacters(): Response<List<Character>>
+    @GET("characters?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
+    suspend fun getAllCharacters(): Response<MarvelResponse<CharacterDetails>>
 
-    @GET("/characters/{characterId}")
+    @GET("characters/{characterId}?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getCharacterDetails(@Path("characterId") characterId: Int): Response<CharacterDetails>
 
-    @GET("/comics")
-    suspend fun getAllComics(): Response<List<ComicBook>>
+    @GET("comics")
+    suspend fun getAllComics(): Response<List<ComicsItem>>
 
-    @GET("/comics/{comicId}")
-    suspend fun getComicDetails(@Path("comicId") comicId: Int): Response<ComicBookDetails>
+    @GET("comics/{comicId}")
+    suspend fun getComicDetails(@Path("comicId") comicId: Int): Response<ComicsItem>
 
     companion object {
         private var retrofitService: MarvelService? = null
@@ -38,7 +38,7 @@ interface MarvelService {
 
                 val retrofit = Retrofit.Builder()
                     .client(client)
-                    .baseUrl("http://gateway.marvel.com/v1/public")
+                    .baseUrl("https://gateway.marvel.com/v1/public/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
 
