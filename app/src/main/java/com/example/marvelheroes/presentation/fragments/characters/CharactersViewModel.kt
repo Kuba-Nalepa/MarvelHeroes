@@ -1,6 +1,6 @@
-package com.example.marvelheroes.presentation.viewmodels
+package com.example.marvelheroes.presentation.fragments.characters
 
-import com.example.marvelheroes.data.model.CharacterDetails
+import com.example.marvelheroes.data.model.Character
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class CharactersViewModel(
     private val getCharactersListUseCase: GetCharactersListUseCase
 ) : ViewModel() {
-    private val _characters = MutableLiveData<List<CharacterDetails>>()
+    private val _characters = MutableLiveData<List<Character>>()
     val characters = _characters
 
     init {

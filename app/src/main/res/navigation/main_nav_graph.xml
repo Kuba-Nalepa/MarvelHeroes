@@ -11,7 +11,7 @@
 
         <fragment
             android:id="@+id/comicsFragment"
-            android:name="com.example.marvelheroes.presentation.fragments.ComicsFragment"
+            android:name="com.example.marvelheroes.presentation.fragments.comics.ComicsFragment"
             tools:layout="@layout/fragment_comics"
             android:label="fragment_comics" />
     </navigation>
@@ -22,7 +22,7 @@
 
         <fragment
             android:id="@+id/charactersFragment"
-            android:name="com.example.marvelheroes.presentation.fragments.CharactersFragment"
+            android:name="com.example.marvelheroes.presentation.fragments.characters.CharactersFragment"
             tools:layout="@layout/fragment_characters"
             android:label="fragment_characters"/>
     </navigation>

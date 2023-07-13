@@ -2,12 +2,16 @@ package com.example.marvelheroes
 
 import android.app.Application
 import com.example.marvelheroes.data.repositoriesImpl.CharacterDataSourceImpl
-import com.example.marvelheroes.data.repositoriesImpl.ComicBooksDataSourceImpl
+import com.example.marvelheroes.data.repositoriesImpl.ComicsDataSourceImpl
+import com.example.marvelheroes.data.repositoriesImpl.SeriesDataSourceImpl
 import com.example.marvelheroes.data.service.MarvelService
 import com.example.marvelheroes.domain.usecases.GetCharacterDetailsUseCase
 import com.example.marvelheroes.domain.usecases.GetCharactersListUseCase
-import com.example.marvelheroes.domain.usecases.GetComicBooksUseCase
-import com.example.marvelheroes.presentation.viewmodels.CharactersViewModel
+import com.example.marvelheroes.domain.usecases.GetComicsUseCase
+import com.example.marvelheroes.domain.usecases.GetSeriesListUseCase
+import com.example.marvelheroes.presentation.fragments.characters.CharactersViewModel
+import com.example.marvelheroes.presentation.fragments.comics.ComicsViewModel
+import com.example.marvelheroes.presentation.fragments.series.SeriesViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -31,17 +35,21 @@ class MarvelHeroesApplication : Application() {
 
         // Repositories Implementation
         single { CharacterDataSourceImpl(get()) }
-        single { ComicBooksDataSourceImpl(get()) }
+        single { ComicsDataSourceImpl(get()) }
+        single { SeriesDataSourceImpl(get()) }
     }
 
     private val domainModule = module {
         // Usecases
         single { GetCharacterDetailsUseCase(get()) }
         single { GetCharactersListUseCase(get()) }
-        single { GetComicBooksUseCase(get()) }
+        single { GetComicsUseCase(get()) }
+        single { GetSeriesListUseCase(get()) }
     }
 
     private val viewModelModule = module {
         viewModel { CharactersViewModel(get()) }
+        viewModel { ComicsViewModel(get()) }
+        viewModel { SeriesViewModel(get()) }
     }
 }

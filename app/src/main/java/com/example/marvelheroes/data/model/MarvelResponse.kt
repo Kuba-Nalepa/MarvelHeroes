@@ -12,14 +12,6 @@ data class MarvelResponse<T>(
     val code: Long,
     @SerializedName("status")
     val status: String,
-    @SerializedName("copyright")
-    val copyright: String,
-    @SerializedName("attributionText")
-    val attributionText: String,
-    @SerializedName("attributionHTML")
-    val attributionHTML: String,
-    @SerializedName("etag")
-    val etag: String,
     @SerializedName("data")
     val marvelData: MarvelData<T>
 )
@@ -28,59 +20,87 @@ data class MarvelResponse<T>(
 data class MarvelData<T>(
     @SerializedName("offset")
     val offset: Long,
-    @SerializedName("limit")
-    val limit: Long,
     @SerializedName("total")
     val total: Long,
-    @SerializedName("count")
-    val count: Long,
     @SerializedName("results")
     val results: List<T>
 )
 
 
-data class CharacterDetails (
+data class Character (
     @SerializedName("id")
     val id: Long,
     @SerializedName("name")
     val name: String,
     @SerializedName("description")
     val description: String,
-    @SerializedName("modified")
-    val modified: String,
     @SerializedName("thumbnail")
     val thumbnail: Thumbnail,
     @SerializedName("resourceURI")
     val resourceURI: String,
-    @SerializedName("comics")
-    val comics: Comics,
-    @SerializedName("series")
-    val series: Comics,
-    @SerializedName("stories")
-    val stories: Stories,
-    @SerializedName("events")
-    val events: Comics,
-    @SerializedName("urls")
-    val urls: List<URL>
 )
 
 
 data class Comics (
-    @SerializedName("available")
-    val available: Long,
-    @SerializedName("collectionURI")
-    val collectionURI: String,
-    @SerializedName("items")
-    val items: List<ComicsItem>,
-    @SerializedName("returned")
-    val returned: Long
-)
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("digitalId")
+    val digitalId: String,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("variantDescription")
+    val variantDescription: String,
+    @SerializedName("description")
+    val description: String,
 
+
+
+    @SerializedName("resourceURI")
+    val resourceURI: String,
+    @SerializedName("urls")
+    val urls: List<URL>,
+    @SerializedName("series")
+    val series: Series,
+
+    @SerializedName("prices")
+    val prices: List<Price>,
+    @SerializedName("thumbnail")
+    val thumbnail: Thumbnail,
+    @SerializedName("images")
+    val images: List<Thumbnail>,
+    @SerializedName("characters")
+    val characters: Character,
+
+)
 
 data class ComicsItem (
     @SerializedName("resourceURI")
     val resourceURI: String,
     @SerializedName("name")
+    val name: String
+)
+
+data class Series (
+    @SerializedName("id")
+    val id: Long,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("variantDescription")
+    val variantDescription: String,
+    @SerializedName("description")
+    val description: String? = null,
+    @SerializedName("resourceURI")
+    val resourceURI: String,
+    @SerializedName("prices")
+    val prices: List<Price>,
+    @SerializedName("thumbnail")
+    val thumbnail: Thumbnail,
+    @SerializedName("images")
+    val images: List<Thumbnail>,
+)
+
+data class SeriesItem (
+    val resourceURI: String,
     val name: String
 )
 
@@ -114,6 +134,17 @@ enum class ItemType(val value: String) {
 }
 
 
+data class Price (
+    val type: PriceType,
+    val price: Double
+)
+
+enum class PriceType {
+    DigitalPurchasePrice,
+    PrintPrice
+}
+
+
 data class Thumbnail (
     @SerializedName("path")
     val path: String,
@@ -123,8 +154,8 @@ data class Thumbnail (
 
 
 enum class Extension(val value: String) {
-    @SerializedName("gif") GIF("gif"),
-    @SerializedName("jpg") Jpg("jpg");
+    @SerializedName("gif") gif("gif"),
+    @SerializedName("jpg") jpg("jpg");
 }
 
 

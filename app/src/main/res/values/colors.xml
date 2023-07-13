@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red_900">#B71C1C</color>
-    <color name="red_700">#D32F2F</color>
-    <color name="red_800">#C62828</color>
-    <color name="gray_600">#757575</color>
-    <color name="gray_800">#424242</color>
+    <color name="red_900">#AF1E19</color>
+    <color name="red_700">#CB312B</color>
+    <color name="red_800">#CB312B</color>
+    <color name="gray_600">#6E6E6E</color>
+    <color name="gray_800">#3C3C3C</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 </resources>

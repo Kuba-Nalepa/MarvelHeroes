@@ -1,20 +1,17 @@
-package com.example.marvelheroes.presentation.fragments
-
+package com.example.marvelheroes.presentation.fragments.comics
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.marvelheroes.databinding.FragmentCharactersBinding
+import com.example.marvelheroes.databinding.FragmentSeriesBinding
 import com.example.marvelheroes.presentation.MyFragmentRoot
-import com.example.marvelheroes.presentation.viewmodels.CharactersViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class CharactersFragment : MyFragmentRoot() {
+class ComicsFragment : MyFragmentRoot() {
 
-    private lateinit var binding: FragmentCharactersBinding
-    private val viewModel: CharactersViewModel by activityViewModel()
+    private lateinit var binding: FragmentSeriesBinding
+    private val viewModel: ComicsViewModel by activityViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,19 +24,15 @@ class CharactersFragment : MyFragmentRoot() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCharactersBinding.inflate(layoutInflater)
+        binding = FragmentSeriesBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uiObserver()
 
-    }
+        viewModel.comics.observe(viewLifecycleOwner) {
 
-    private fun uiObserver() {
-        viewModel.characters.observe(viewLifecycleOwner) {
-            Log.d("frag", it.toString())
         }
     }
 }
