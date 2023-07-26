@@ -1,19 +1,21 @@
-package com.example.marvelheroes.presentation.fragments.series
+package com.example.marvelheroes.presentation.fragments.events
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
-import com.example.marvelheroes.databinding.FragmentSeriesBinding
+import com.example.marvelheroes.databinding.FragmentEventsBinding
 import com.example.marvelheroes.presentation.MyFragmentRoot
+import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
-class SeriesFragment : MyFragmentRoot() {
+class EventsFragment : MyFragmentRoot() {
 
-    private val viewModel: SeriesViewModel by activityViewModel()
-    private lateinit var binding: FragmentSeriesBinding
+    private val viewModel: EventsViewModel by activityViewModel()
+    private lateinit var binding: FragmentEventsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,26 +28,27 @@ class SeriesFragment : MyFragmentRoot() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSeriesBinding.inflate(layoutInflater)
+        binding = FragmentEventsBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPager = binding.photosViewpager
+        val viewPager2 = binding.seriesViewpager
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab())
-        binding.tabLayout.addTab(binding.tabLayout.newTab())
-        binding.tabLayout.addTab(binding.tabLayout.newTab())
+        setUI(viewPager2)
 
-        setImages(viewPager)
     }
 
-    private fun setImages(viewPager: ViewPager2) {
-        viewModel.series.observe(viewLifecycleOwner) {listSeries ->
+    private fun setUI(viewPager2: ViewPager2) {
+        viewModel.series.observe(viewLifecycleOwner) { listSeries ->
+            Log.d("fragment", listSeries.toString())
             val adapter = ViewPagerAdapter(listSeries)
-            viewPager.adapter = adapter
+            viewPager2.adapter = adapter
+            val tabLayout = binding.tabLayout
+            TabLayoutMediator(tabLayout, viewPager2) {  _, _ -> }.attach()
+
         }
 
     }

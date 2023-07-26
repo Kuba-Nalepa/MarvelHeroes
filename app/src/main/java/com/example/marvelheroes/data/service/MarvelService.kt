@@ -4,7 +4,7 @@ import com.example.marvelheroes.data.model.MarvelResponse
 import com.example.marvelheroes.data.model.Character
 import com.example.marvelheroes.data.model.ComicsItem
 import com.example.marvelheroes.BuildConfig
-import com.example.marvelheroes.data.model.Series
+import com.example.marvelheroes.data.model.Event
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -27,8 +27,8 @@ interface MarvelService {
     @GET("comics/{comicId}")
     suspend fun getComicDetails(@Path("comicId") comicId: Int): Response<ComicsItem>
 
-    @GET("series?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
-    suspend fun getAllSeries(): Response<MarvelResponse<Series>>
+    @GET("events?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
+    suspend fun getAllEvents(): Response<MarvelResponse<Event>>
 
     companion object {
         private var retrofitService: MarvelService? = null

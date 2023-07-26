@@ -52,16 +52,12 @@ data class Comics (
     val variantDescription: String,
     @SerializedName("description")
     val description: String,
-
-
-
     @SerializedName("resourceURI")
     val resourceURI: String,
     @SerializedName("urls")
     val urls: List<URL>,
-    @SerializedName("series")
-    val series: Series,
-
+//    @SerializedName("series")
+//    val series: Series,
     @SerializedName("prices")
     val prices: List<Price>,
     @SerializedName("thumbnail")
@@ -80,27 +76,33 @@ data class ComicsItem (
     val name: String
 )
 
-data class Series (
+data class Event(
     @SerializedName("id")
     val id: Long,
     @SerializedName("title")
     val title: String,
-    @SerializedName("variantDescription")
-    val variantDescription: String,
     @SerializedName("description")
-    val description: String? = null,
-    @SerializedName("resourceURI")
-    val resourceURI: String,
-    @SerializedName("prices")
-    val prices: List<Price>,
+    val description: String,
+    @SerializedName("start")
+    val startDate: String? = null,
+    @SerializedName("end")
+    val endDate: String? = null,
     @SerializedName("thumbnail")
     val thumbnail: Thumbnail,
-    @SerializedName("images")
-    val images: List<Thumbnail>,
+    @SerializedName("characters")
+    val featuringCharacters: FeaturingCharacters
+    )
+
+data class FeaturingCharacters (
+    @SerializedName("items")
+    val items: List<FeaturingCharacter>,
+
 )
 
-data class SeriesItem (
+data class FeaturingCharacter (
+    @SerializedName("resourceURI")
     val resourceURI: String,
+    @SerializedName("name")
     val name: String
 )
 

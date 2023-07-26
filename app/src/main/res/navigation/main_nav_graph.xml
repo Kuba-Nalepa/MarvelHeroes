@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/series">
+    app:startDestination="@id/events">
 
     <navigation
         android:id="@+id/comics"
@@ -28,14 +28,14 @@
     </navigation>
 
     <navigation
-        android:id="@+id/series"
-        app:startDestination="@id/seriesFragment">
+        android:id="@+id/events"
+        app:startDestination="@id/eventFragment">
 
         <fragment
-            android:id="@+id/seriesFragment"
-            android:name="com.example.marvelheroes.presentation.fragments.series.SeriesFragment"
-            tools:layout="@layout/fragment_series"
-            android:label="fragment_series" />
+            android:id="@+id/eventFragment"
+            android:name="com.example.marvelheroes.presentation.fragments.events.EventsFragment"
+            tools:layout="@layout/fragment_events"
+            android:label="fragment_event" />
     </navigation>
 
 </navigation>

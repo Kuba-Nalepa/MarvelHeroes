@@ -5,4 +5,11 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="example_text">Example text</string>
+    <string name="image_from_marvel_api">Image from Marvel Api</string>
+    <string name="events">Events</string>
+    <string name="comics">Comics</string>
+    <string name="characters">Characters</string>
+    <string name="background_image">Background Image</string>
+    <string name="line_mark">-</string>
 </resources>
