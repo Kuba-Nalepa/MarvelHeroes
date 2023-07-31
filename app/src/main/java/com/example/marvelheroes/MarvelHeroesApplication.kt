@@ -8,6 +8,7 @@ import com.example.marvelheroes.data.service.MarvelService
 import com.example.marvelheroes.domain.usecases.GetCharacterDetailsUseCase
 import com.example.marvelheroes.domain.usecases.GetCharactersListUseCase
 import com.example.marvelheroes.domain.usecases.GetComicsUseCase
+import com.example.marvelheroes.domain.usecases.GetEventCharacterUseCase
 import com.example.marvelheroes.domain.usecases.GetEventsListUseCase
 import com.example.marvelheroes.presentation.fragments.characters.CharactersViewModel
 import com.example.marvelheroes.presentation.fragments.comics.ComicsViewModel
@@ -45,11 +46,12 @@ class MarvelHeroesApplication : Application() {
         single { GetCharactersListUseCase(get()) }
         single { GetComicsUseCase(get()) }
         single { GetEventsListUseCase(get()) }
+        single { GetEventCharacterUseCase(get()) }
     }
 
     private val viewModelModule = module {
         viewModel { CharactersViewModel(get()) }
         viewModel { ComicsViewModel(get()) }
-        viewModel { EventsViewModel(get()) }
+        viewModel { EventsViewModel(get(), get()) }
     }
 }

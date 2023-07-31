@@ -29,15 +29,15 @@ data class MarvelData<T>(
 
 data class Character (
     @SerializedName("id")
-    val id: Long,
+    val id: Long? = null,
     @SerializedName("name")
-    val name: String,
+    val name: String? = null,
     @SerializedName("description")
-    val description: String,
+    val description: String? = null,
     @SerializedName("thumbnail")
-    val thumbnail: Thumbnail,
+    val thumbnail: Thumbnail? = null,
     @SerializedName("resourceURI")
-    val resourceURI: String,
+    val resourceURI: String? = null,
 )
 
 
@@ -56,8 +56,6 @@ data class Comics (
     val resourceURI: String,
     @SerializedName("urls")
     val urls: List<URL>,
-//    @SerializedName("series")
-//    val series: Series,
     @SerializedName("prices")
     val prices: List<Price>,
     @SerializedName("thumbnail")
@@ -95,16 +93,16 @@ data class Event(
 
 data class FeaturingCharacters (
     @SerializedName("items")
-    val items: List<FeaturingCharacter>,
+    var items: List<Character>,
 
 )
 
-data class FeaturingCharacter (
-    @SerializedName("resourceURI")
-    val resourceURI: String,
-    @SerializedName("name")
-    val name: String
-)
+//data class  FeaturingCharacter (
+//    @SerializedName("resourceURI")
+//    val resourceURI: String,
+//    @SerializedName("name")
+//    val name: String
+//)
 
 
 data class Stories (
