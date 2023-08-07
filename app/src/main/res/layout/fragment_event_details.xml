@@ -57,28 +57,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="20dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:baselineAligned="false"
-                android:layout_marginTop="10dp">
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@color/black">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/SmallHeader"
+                        android:textColor="@color/white"
                         android:text="@string/release_date"/>
 
                     <TextView
@@ -86,23 +87,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/white"
+                        android:paddingBottom="5dp"/>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        app:dividerColor="@color/red_900" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
+                    android:layout_height="match_parent"
+                    android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@color/black">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/SmallHeader"
+                        android:textColor="@color/white"
                         android:text="@string/end_date"/>
 
 
@@ -111,39 +120,55 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white"
+                        android:paddingBottom="5dp"/>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        app:dividerColor="@color/red_900" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/description"
-                android:layout_marginTop="10dp"
-                style="@style/SmallHeader"/>
-
-            <TextView
-                android:id="@+id/eventDescription"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/RegularFont" />
+                android:paddingHorizontal="20dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/featuring_characters"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                style="@style/SmallHeader"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description"
+                    android:layout_marginTop="10dp"
+                    style="@style/SmallHeader"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/eventCharactersRecyclerView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:nestedScrollingEnabled="false"/>
+                <TextView
+                    android:id="@+id/eventDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/RegularFont" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/featuring_characters"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    style="@style/SmallHeader"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eventCharactersRecyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:nestedScrollingEnabled="false"/>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
