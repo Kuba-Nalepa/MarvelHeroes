@@ -1,10 +1,19 @@
 <resources>
 
-    <style name="Widget.Theme.MarvelHeroes.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+<!--    <style name="Widget.Theme.MarvelHeroes.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">-->
+<!--    </style>-->
+
+<!--    <style name="Widget.Theme.MarvelHeroes.ButtonBar.Fullscreen" parent="">-->
+
+<!--        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>-->
+<!--    </style>-->
+
+    <style name="SmallHeader">
+        <item name="android:textSize">10sp</item>
     </style>
 
-    <style name="Widget.Theme.MarvelHeroes.ButtonBar.Fullscreen" parent="">
-
-        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    <style name="RegularFont">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

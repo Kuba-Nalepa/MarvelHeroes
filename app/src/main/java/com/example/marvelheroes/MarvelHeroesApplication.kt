@@ -8,11 +8,13 @@ import com.example.marvelheroes.data.service.MarvelService
 import com.example.marvelheroes.domain.usecases.GetCharacterDetailsUseCase
 import com.example.marvelheroes.domain.usecases.GetCharactersListUseCase
 import com.example.marvelheroes.domain.usecases.GetComicsUseCase
-import com.example.marvelheroes.domain.usecases.GetEventCharacterUseCase
+import com.example.marvelheroes.domain.usecases.GetCharactersEventUseCase
+import com.example.marvelheroes.domain.usecases.GetEventDetailsUseCase
 import com.example.marvelheroes.domain.usecases.GetEventsListUseCase
 import com.example.marvelheroes.presentation.fragments.characters.CharactersViewModel
 import com.example.marvelheroes.presentation.fragments.comics.ComicsViewModel
 import com.example.marvelheroes.presentation.fragments.events.EventsViewModel
+import com.example.marvelheroes.presentation.fragments.events.eventDetails.EventDetailsViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -46,12 +48,14 @@ class MarvelHeroesApplication : Application() {
         single { GetCharactersListUseCase(get()) }
         single { GetComicsUseCase(get()) }
         single { GetEventsListUseCase(get()) }
-        single { GetEventCharacterUseCase(get()) }
+        single { GetCharactersEventUseCase(get()) }
+        single { GetEventDetailsUseCase(get()) }
     }
 
     private val viewModelModule = module {
         viewModel { CharactersViewModel(get()) }
         viewModel { ComicsViewModel(get()) }
-        viewModel { EventsViewModel(get(), get()) }
+        viewModel { EventsViewModel(get()) }
+        viewModel { EventDetailsViewModel(get(), get()) }
     }
 }

@@ -15,7 +15,9 @@ class ComicsViewModel(
 
     init {
         viewModelScope.launch {
-            comics.postValue(getComicsUseCase.execute())
+            getComicsUseCase.execute().collect { comicsList ->
+                comics.postValue(comicsList)
+            }
         }
     }
 }

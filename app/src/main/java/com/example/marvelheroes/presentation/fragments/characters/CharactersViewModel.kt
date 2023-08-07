@@ -16,7 +16,9 @@ class CharactersViewModel(
 
     init {
         viewModelScope.launch {
-            _characters.postValue(getCharactersListUseCase.execute())
+            getCharactersListUseCase.execute().collect { charactersList ->
+                _characters.postValue(charactersList)
+            }
         }
     }
 }

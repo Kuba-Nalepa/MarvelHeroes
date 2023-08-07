@@ -76,7 +76,7 @@ data class ComicsItem (
 
 data class Event(
     @SerializedName("id")
-    val id: Long,
+    val id: Int,
     @SerializedName("title")
     val title: String,
     @SerializedName("description")
@@ -155,7 +155,8 @@ data class Thumbnail (
 
 enum class Extension(val value: String) {
     @SerializedName("gif") gif("gif"),
-    @SerializedName("jpg") jpg("jpg");
+    @SerializedName("jpg") jpg("jpg"),
+    @SerializedName("png") png("png");
 }
 
 

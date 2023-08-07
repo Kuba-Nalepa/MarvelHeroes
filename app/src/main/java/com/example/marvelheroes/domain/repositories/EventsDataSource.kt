@@ -9,4 +9,6 @@ interface EventsDataSource {
     suspend fun getEvents(): MarvelResponse<Event>
 
     suspend fun getCharactersEvent(id: Int): MarvelResponse<Character>
+
+    suspend fun getEventDetails(id: Int): MarvelResponse<Event>
 }

@@ -8,14 +8,14 @@ import com.example.marvelheroes.data.model.Event
 import com.example.marvelheroes.databinding.EventCharacterListItemBinding
 
 
-class EventsAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<EventsAdapter.RecyclerViewHolder>() {
-
-
+class EventsAdapter(private val eventsList: List<Event>,
+                    private val listener: OnEventClick
+): RecyclerView.Adapter<EventsAdapter.RecyclerViewHolder>() {
 
     inner class RecyclerViewHolder(binding: EventCharacterListItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
-        val eventImage = binding.eventImage
-        val eventTitle = binding.eventTitle
+        val eventImage = binding.image
+        val eventTitle = binding.title
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -37,6 +37,10 @@ class EventsAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<E
             .into(holder.eventImage)
 
         holder.eventTitle.text = eventsList[position].title
+
+        holder.itemView.setOnClickListener {
+            listener.onEventClick(eventsList[position], position)
+        }
     }
 
 }

@@ -13,13 +13,6 @@ class ComicsFragment : MyFragmentRoot() {
     private lateinit var binding: FragmentComicsBinding
     private val viewModel: ComicsViewModel by activityViewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        hideActionAndStatusBar()
-//        setTranslucentStatusBar()
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

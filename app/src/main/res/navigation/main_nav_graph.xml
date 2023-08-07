@@ -34,8 +34,20 @@
         <fragment
             android:id="@+id/eventFragment"
             android:name="com.example.marvelheroes.presentation.fragments.events.EventsFragment"
-            tools:layout="@layout/fragment_events"
-            android:label="fragment_event" />
+            tools:layout="@layout/fragment_events">
+            <action
+                android:id="@+id/action_eventFragment_to_eventDetailsFragment"
+                app:destination="@id/eventDetailsFragment" />
+        </fragment>
+
+        <fragment android:id="@+id/eventDetailsFragment"
+            android:name="com.example.marvelheroes.presentation.fragments.events.eventDetails.EventDetailsFragment"
+            android:label="Event details"
+            tools:layout="@layout/fragment_event_details">
+            <argument
+                android:name="id"
+                app:argType="integer" />
+        </fragment>
     </navigation>
 
 </navigation>

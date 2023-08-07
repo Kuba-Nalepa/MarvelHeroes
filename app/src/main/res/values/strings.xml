@@ -12,4 +12,14 @@
     <string name="characters">Characters</string>
     <string name="background_image">Background Image</string>
     <string name="line_mark">-</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum lorem sed risus ultricies tristique. Est velit egestas dui id ornare arcu odio ut. Tincidunt augue interdum velit euismod. Nibh venenatis cras sed felis eget velit aliquet sagittis. Donec ac odio tempor orci. Ultricies integer quis auctor elit sed vulputate mi sit. Non blandit massa enim nec dui nunc. Arcu dui vivamus arcu felis bibendum ut. Etiam non quam lacus suspendisse. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque.
+
+        Sit amet aliquam id diam maecenas. Urna neque viverra justo nec. Quis eleifend quam adipiscing vitae proin. Lacus suspendisse faucibus interdum posuere lorem ipsum. Ullamcorper a lacus vestibulum sed arcu non odio. Mollis aliquam ut porttitor leo a diam. Malesuada fames ac turpis egestas maecenas pharetra convallis posuere. Feugiat in ante metus dictum at tempor. Odio eu feugiat pretium nibh ipsum consequat nisl. Sodales ut eu sem integer vitae justo. Enim ut tellus elementum sagittis vitae. Etiam sit amet nisl purus in mollis nunc sed. Ornare lectus sit amet est placerat in. In hendrerit gravida rutrum quisque non tellus orci. Congue eu consequat ac felis donec. Gravida quis blandit turpis cursus in hac. Nunc faucibus a pellentesque sit. Ut pharetra sit amet aliquam id diam.</string>
+    <string name="toolbar_image">Toolbar Image</string>
+    <string name="release_date">Release date</string>
+    <string name="end_date">End date</string>
+    <string name="description">Description</string>
+    <string name="featuring_characters">Featuring characters</string>
+    <string name="back_arrow">Back arrow</string>
 </resources>

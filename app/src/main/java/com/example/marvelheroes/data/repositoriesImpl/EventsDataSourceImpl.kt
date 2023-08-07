@@ -19,6 +19,17 @@ class EventsDataSourceImpl(
         }
     }
 
+    override suspend fun getEventDetails(id: Int): MarvelResponse<Event> {
+        val response = marvelService.getEventDetails(id.toString())
+        if (response.isSuccessful) {
+
+            return response.body() ?: throw IllegalArgumentException("Failed to return Marvel event details")
+        }
+        else {
+            throw RuntimeException(response.errorBody().toString())
+        }
+    }
+
     override suspend fun getCharactersEvent(id: Int): MarvelResponse<Character> {
         val response = marvelService.getCharactersAtEvent(id)
         if (response.isSuccessful) {
