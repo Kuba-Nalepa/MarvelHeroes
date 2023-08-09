@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimary</item>
 <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
         <!-- Customize your theme here. -->
+        <item name="colorOnSurfaceVariant">#FFFFFF</item>
 
 <!--        <item name="android:windowTranslucentStatus">true</item>-->
 <!--        <item name="android:windowLightStatusBar">false</item>-->

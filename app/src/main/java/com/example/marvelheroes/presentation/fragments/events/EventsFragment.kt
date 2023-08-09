@@ -1,9 +1,11 @@
 package com.example.marvelheroes.presentation.fragments.events
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -14,7 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
-class EventsFragment : MyFragmentRoot(), OnEventClick {
+class EventsFragment : MyFragmentRoot() , OnEventClick {
 
     private val viewModel: EventsViewModel by activityViewModel()
     private lateinit var binding: FragmentEventsBinding
@@ -35,6 +37,7 @@ class EventsFragment : MyFragmentRoot(), OnEventClick {
         setViewPager(viewPager2)
         setAllEvents()
 
+
     }
 
     private fun setViewPager(viewPager2: ViewPager2) {
@@ -51,7 +54,25 @@ class EventsFragment : MyFragmentRoot(), OnEventClick {
         viewModel.allEvents().observe(viewLifecycleOwner) { allEvents ->
             binding.eventsRecyclerView.layoutManager = GridLayoutManager(requireContext(),3)
             binding.eventsRecyclerView.adapter = EventsAdapter(allEvents, this)
+
+            setSearchView(allEvents)
         }
+    }
+
+    private fun setSearchView(list: List<Event>) {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filtered = list.filter {
+                    newText!= null && it.title.contains(newText, true)
+                }
+                (binding.eventsRecyclerView.adapter as EventsAdapter).update(filtered)
+                return false
+            }
+        })
     }
 
     override fun onEventClick(event: Event, position: Int) {
