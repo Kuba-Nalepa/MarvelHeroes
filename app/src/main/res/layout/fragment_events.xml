@@ -56,7 +56,7 @@ android:layout_width="match_parent">
                 app:hideNavigationIcon="true"
                 app:searchIcon="@null"
                 app:iconifiedByDefault="false"
-                app:queryHint="Search your fav events"
+                app:queryHint="@string/search_event_text"
                 android:background="@drawable/bg_gray_rounded"
                 android:theme="@style/SearchViewStyle"/>
 
