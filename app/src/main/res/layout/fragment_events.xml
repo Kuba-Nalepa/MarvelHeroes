@@ -21,7 +21,7 @@ android:layout_width="match_parent">
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/series_viewpager"
+                android:id="@+id/events_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

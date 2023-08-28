@@ -32,11 +32,9 @@ class EventsFragment : MyFragmentRoot() , OnEventClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPager2 = binding.seriesViewpager
-
+        val viewPager2 = binding.eventsViewpager
         setViewPager(viewPager2)
         setAllEvents()
-
 
     }
 
@@ -45,7 +43,10 @@ class EventsFragment : MyFragmentRoot() , OnEventClick {
             val viewPagerAdapter = ViewPagerAdapter(mainSectionEvents)
             viewPager2.adapter = viewPagerAdapter
             val tabLayout = binding.tabLayout
-            TabLayoutMediator(tabLayout, viewPager2) {  _, _ -> }.attach()
+            TabLayoutMediator(tabLayout, viewPager2) { _, _ ->
+            }.attach()
+
+            setViewPagerInfinite(mainSectionEvents.size + 2)
 
         }
     }
@@ -61,6 +62,7 @@ class EventsFragment : MyFragmentRoot() , OnEventClick {
 
     private fun setSearchView(list: List<Event>) {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -75,8 +77,31 @@ class EventsFragment : MyFragmentRoot() , OnEventClick {
         })
     }
 
+    private fun setViewPagerInfinite(listSize: Int) {
+        binding.eventsViewpager.currentItem = 1
+        val first = binding.tabLayout.getTabAt(0)
+        val last = binding.tabLayout.getTabAt(4)
+        first?.view?.visibility = View.GONE
+        last?.view?.visibility = View.GONE
+        binding.eventsViewpager.registerOnPageChangeCallback(object:
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+
+                if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    when (binding.eventsViewpager.currentItem) {
+                        listSize - 1 -> binding.eventsViewpager.setCurrentItem(1, false)
+                        0 -> binding.eventsViewpager.setCurrentItem(listSize - 2, false)
+                    }
+                }
+            }
+        })
+    }
+
     override fun onEventClick(event: Event, position: Int) {
+        binding.tabLayout.removeTabAt(0)
         val action = EventsFragmentDirections.actionEventFragmentToEventDetailsFragment(event.id)
         findNavController().navigate(action)
+        binding.searchView.setQuery("", false)
     }
 }

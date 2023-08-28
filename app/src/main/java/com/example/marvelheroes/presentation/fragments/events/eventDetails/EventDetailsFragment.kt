@@ -61,7 +61,7 @@ class EventDetailsFragment : MyFragmentRoot(), OnCharacterClick {
             }
 
             toolBar.setNavigationIcon(R.drawable.back_arrow)
-            toolBar.setOnClickListener {
+            toolBar.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
         }

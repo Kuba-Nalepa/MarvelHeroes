@@ -9,9 +9,11 @@ import com.example.marvelheroes.data.model.Event
 import com.example.marvelheroes.databinding.CarouselSeriesItemBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 
-class ViewPagerAdapter(private val listEvents: List<Event>):RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
+class ViewPagerAdapter(listEvents: List<Event>):RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
     private lateinit var context: Context
+
+    private val fakeList = listOf(listEvents.last()) + listEvents + listOf(listEvents.first())
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,8 +27,8 @@ class ViewPagerAdapter(private val listEvents: List<Event>):RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewPagerAdapter.ViewPagerViewHolder, position: Int) {
 
-        val currentImagePath = listEvents[position].thumbnail.path
-        val currentImageExtension = listEvents[position].thumbnail.extension
+        val currentImagePath = fakeList[position].thumbnail.path
+        val currentImageExtension = fakeList[position].thumbnail.extension
         val currentImage = "$currentImagePath.$currentImageExtension".replaceFirst("http","https")
         Glide.with(holder.itemView)
             .load(currentImage)
@@ -38,12 +40,12 @@ class ViewPagerAdapter(private val listEvents: List<Event>):RecyclerView.Adapter
             .transform(BlurTransformation())
             .into(holder.backgroundImage)
 
-        holder.title.text = listEvents[position].title
+        holder.title.text = fakeList[position].title
 
     }
 
     override fun getItemCount(): Int {
-        return listEvents.size
+        return fakeList.size
     }
 
     inner class ViewPagerViewHolder(binding: CarouselSeriesItemBinding): RecyclerView.ViewHolder(binding.root) {
