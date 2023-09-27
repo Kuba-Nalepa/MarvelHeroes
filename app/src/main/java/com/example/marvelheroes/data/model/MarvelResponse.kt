@@ -41,7 +41,7 @@ data class Character (
 )
 
 
-data class Comics (
+data class ComicBook (
     @SerializedName("id")
     val id: String,
     @SerializedName("digitalId")
@@ -63,11 +63,11 @@ data class Comics (
     @SerializedName("images")
     val images: List<Thumbnail>,
     @SerializedName("characters")
-    val characters: Character,
+    val featuringCharacters: FeaturingCharacters,
 
 )
 
-data class ComicsItem (
+data class ComicBookItem (
     @SerializedName("resourceURI")
     val resourceURI: String,
     @SerializedName("name")
@@ -88,13 +88,29 @@ data class Event(
     @SerializedName("thumbnail")
     val thumbnail: Thumbnail,
     @SerializedName("characters")
-    val featuringCharacters: FeaturingCharacters
+    val featuringCharacters: FeaturingCharacters,
+    @SerializedName("creators")
+    val featuringCreators: FeaturingCreators
     )
 
 data class FeaturingCharacters (
     @SerializedName("items")
     var items: List<Character>,
 
+)
+
+data class FeaturingCreators(
+    @SerializedName("items")
+    var items: List<Creator>,
+)
+
+data class Creator(
+    @SerializedName("id")
+    val id: Int?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("role")
+    val role: String?
 )
 
 //data class  FeaturingCharacter (

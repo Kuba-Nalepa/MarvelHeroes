@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.marvelheroes.data.model.Comics
+import com.example.marvelheroes.data.model.ComicBook
 import com.example.marvelheroes.databinding.CarouselSeriesItemBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 
-class ViewPagerAdapter(private val images: List<Comics>):RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
+class ViewPagerAdapter(private val images: List<ComicBook>):RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
     private lateinit var context: Context
 

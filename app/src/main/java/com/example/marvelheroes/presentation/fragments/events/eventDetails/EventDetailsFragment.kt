@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,12 +36,28 @@ class EventDetailsFragment : MyFragmentRoot(), OnCharacterClick {
         super.onViewCreated(view, savedInstanceState)
         vm.getEventDetails(navigationArgs.id)
         vm.getCharactersEvent(navigationArgs.id)
+        vm.getEventCreators(navigationArgs.id)
+
         setUi()
+        setObservers()
     }
 
     private fun setUi() {
         binding.apply {
 
+            toolBar.setNavigationIcon(R.drawable.back_arrow)
+
+            toolBar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+            expandCreators.setOnClickListener {
+                vm.getFiveMoreCreators(navigationArgs.id)
+            }
+        }
+    }
+
+    private fun setObservers() {
+        binding.apply {
             vm.eventDetails.observe(viewLifecycleOwner) { event ->
                 releaseDate.text = vm.getFormattedDates().first
                 endDate.text = vm.getFormattedDates().second
@@ -55,14 +72,22 @@ class EventDetailsFragment : MyFragmentRoot(), OnCharacterClick {
                     .into(collapsingImage)
             }
 
-            vm.eventCharacters.observe(viewLifecycleOwner) { charactersList ->
+            vm.eventCharacters.observe(viewLifecycleOwner) { characters ->
                 eventCharactersRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false)
-                eventCharactersRecyclerView.adapter = EventCharactersAdapter(charactersList,this@EventDetailsFragment)
+                eventCharactersRecyclerView.adapter = EventCharactersAdapter(characters,this@EventDetailsFragment)
             }
 
-            toolBar.setNavigationIcon(R.drawable.back_arrow)
-            toolBar.setNavigationOnClickListener {
-                findNavController().navigateUp()
+            vm.eventCreators.observe(viewLifecycleOwner) { creators ->
+                eventCreatorsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                eventCreatorsRecyclerView.adapter = creators?.let { CreatorsAdapter(it) }
+                expandCreators.isVisible = creators?.size!! < 20
+
+            }
+
+            vm.isLoading.observe(viewLifecycleOwner) {
+                progressBar.isVisible = it
+                expandCreators.isVisible = !it
+
             }
         }
     }

@@ -22,5 +22,8 @@
     <string name="description">Description</string>
     <string name="featuring_characters">Featuring characters</string>
     <string name="back_arrow">Back arrow</string>
-    <string name="search_event_text">Search for events...</string>
+    <string name="search_event_text">Search for events…</string>
+    <string name="full_name">%s %s</string>
+    <string name="show_more">Show more</string>
+    <string name="creators">Creators</string>
 </resources>

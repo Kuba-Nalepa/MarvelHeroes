@@ -2,10 +2,10 @@ package com.example.marvelheroes.data.service
 
 import com.example.marvelheroes.data.model.MarvelResponse
 import com.example.marvelheroes.data.model.Character
-import com.example.marvelheroes.data.model.ComicsItem
+import com.example.marvelheroes.data.model.ComicBookItem
 import com.example.marvelheroes.BuildConfig
+import com.example.marvelheroes.data.model.Creator
 import com.example.marvelheroes.data.model.Event
-//import com.example.marvelheroes.data.model.FeaturingCharacter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -23,10 +23,10 @@ interface MarvelService {
     suspend fun getCharacterDetails(@Path("characterId") characterId: Int): Response<MarvelResponse<Character>>
 
     @GET("comics?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
-    suspend fun getAllComics(): Response<MarvelResponse<ComicsItem>>
+    suspend fun getAllComics(): Response<MarvelResponse<ComicBookItem>>
 
     @GET("comics/{comicId}")
-    suspend fun getComicDetails(@Path("comicId") comicId: Int): Response<ComicsItem>
+    suspend fun getComicDetails(@Path("comicId") comicId: Int): Response<ComicBookItem>
 
     @GET("events?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getAllEvents(): Response<MarvelResponse<Event>>
@@ -36,6 +36,12 @@ interface MarvelService {
 
     @GET("events/{eventId}/characters?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getCharactersAtEvent(@Path("eventId") eventId: Int): Response<MarvelResponse<Character>>
+
+    @GET("events/{eventId}/creators?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
+    suspend fun getEventCreators(@Path("eventId") eventId: Int): Response<MarvelResponse<Creator>>
+
+    @GET("creators/{creatorId}/events?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
+    suspend fun getCreatorRole(@Path("creatorId") creatorId: Int): Response<MarvelResponse<Event>>
 
     companion object {
         private var retrofitService: MarvelService? = null
