@@ -14,11 +14,12 @@ import com.example.marvelheroes.R
 import com.example.marvelheroes.data.model.Character
 import com.example.marvelheroes.databinding.FragmentEventDetailsBinding
 import com.example.marvelheroes.presentation.MyFragmentRoot
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import jp.wasabeef.glide.transformations.BlurTransformation
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
-class EventDetailsFragment : MyFragmentRoot(), OnCharacterClick {
+class EventDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentEventDetailsBinding
     private val navigationArgs: EventDetailsFragmentArgs by navArgs()

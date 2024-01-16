@@ -9,9 +9,10 @@ import com.example.marvelheroes.data.model.ComicBook
 import com.example.marvelheroes.databinding.CarouselSeriesItemBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 
-class ViewPagerAdapter(private val images: List<ComicBook>):RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
+class ViewPagerAdapter(listComics: List<ComicBook>):RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
     private lateinit var context: Context
+    private val fakeList = listOf(listComics.last()) + listComics + listOf(listComics.first())
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,26 +26,26 @@ class ViewPagerAdapter(private val images: List<ComicBook>):RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewPagerAdapter.ViewPagerViewHolder, position: Int) {
 
-        val currentImagePath = images[position].thumbnail.path
-        val currentImageExtension = images[position].thumbnail.extension
+        val currentImagePath = fakeList[position].thumbnail.path
+        val currentImageExtension = fakeList[position].thumbnail.extension
         val currentImage = "$currentImagePath.$currentImageExtension".replaceFirst("http","https")
         Glide.with(holder.itemView)
             .load(currentImage)
             .fitCenter()
             .into(holder.image)
-        holder.title.text = images[position].title
+        holder.title.text = fakeList[position].title
         Glide.with(holder.itemView)
             .load(currentImage)
             .fitCenter()
             .transform(BlurTransformation())
             .into(holder.backgroundImage)
 
-
+        holder.title.text = fakeList[position].title
 
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return fakeList.size
     }
 
     inner class ViewPagerViewHolder(binding: CarouselSeriesItemBinding): RecyclerView.ViewHolder(binding.root) {
