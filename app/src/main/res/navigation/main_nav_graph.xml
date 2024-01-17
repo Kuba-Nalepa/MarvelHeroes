@@ -13,7 +13,20 @@
             android:id="@+id/comicsFragment"
             android:name="com.example.marvelheroes.presentation.fragments.comics.ComicsFragment"
             tools:layout="@layout/fragment_comics"
-            android:label="fragment_comics" />
+            android:label="fragment_comics" >
+            <action
+                android:id="@+id/action_comicsFragment_to_comicsDetailsFragment"
+                app:destination="@id/comicsDetailsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/comicsDetailsFragment"
+            android:name="com.example.marvelheroes.presentation.fragments.comics.comicsDetails.ComicsDetailsFragment"
+            android:label="fragment_comics_details"
+            tools:layout="@layout/fragment_comics_details" >
+            <argument
+                android:name="id"
+                app:argType="integer" />
+        </fragment>
     </navigation>
 
     <navigation

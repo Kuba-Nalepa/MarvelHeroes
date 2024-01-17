@@ -22,12 +22,17 @@ class ComicsViewModel(
         viewModelScope.launch {
             getComicsUseCase.execute().collect { comicsList ->
 
-                val mainSectionComics = comicsList.shuffled().take(3)
+                val filteredComicList = comicsList.filter { comicBook ->
+                    !comicBook.thumbnail.path.endsWith("image_not_available")
+                }
+
+                val mainSectionComics = filteredComicList.shuffled().take(3)
 
                 _homePageComics.postValue(mainSectionComics)
 
-                _allComics.postValue(comicsList)
+                _allComics.postValue(filteredComicList)
             }
         }
     }
+
 }

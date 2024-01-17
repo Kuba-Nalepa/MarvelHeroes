@@ -2,7 +2,6 @@ package com.example.marvelheroes.presentation.fragments.events
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,9 +43,7 @@ class EventsFragment : MyFragmentRoot() , OnEventClick {
             val viewPagerAdapter = ViewPagerAdapter(mainSectionEvents)
             viewPager2.adapter = viewPagerAdapter
             val tabLayout = binding.tabLayout
-            TabLayoutMediator(tabLayout, viewPager2) { _, _ ->
-                Log.d("TABY event", tabLayout.tabCount.toString())
-            }.attach()
+            TabLayoutMediator(tabLayout, viewPager2) { _, _ -> }.attach()
 
             setViewPagerInfinite(mainSectionEvents.size + 2)
 

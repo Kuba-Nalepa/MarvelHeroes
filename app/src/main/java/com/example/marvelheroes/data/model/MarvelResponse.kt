@@ -43,7 +43,7 @@ data class Character (
 
 data class ComicBook (
     @SerializedName("id")
-    val id: String,
+    val id: Int,
     @SerializedName("digitalId")
     val digitalId: String,
     @SerializedName("title")
@@ -64,15 +64,13 @@ data class ComicBook (
     val images: List<Thumbnail>,
     @SerializedName("characters")
     val featuringCharacters: FeaturingCharacters,
+    @SerializedName("pageCount")
+    val pageCount: Int,
+    @SerializedName("format")
+    val coverType: String
 
 )
 
-data class ComicBookItem (
-    @SerializedName("resourceURI")
-    val resourceURI: String,
-    @SerializedName("name")
-    val name: String
-)
 
 data class Event(
     @SerializedName("id")

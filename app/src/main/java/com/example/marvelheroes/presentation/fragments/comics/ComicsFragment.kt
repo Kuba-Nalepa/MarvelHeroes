@@ -1,20 +1,21 @@
 package com.example.marvelheroes.presentation.fragments.comics
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.marvelheroes.data.model.ComicBook
 import com.example.marvelheroes.databinding.FragmentComicsBinding
 import com.example.marvelheroes.presentation.MyFragmentRoot
+import com.example.marvelheroes.presentation.fragments.comics.comicsDetails.OnComicsClick
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class ComicsFragment : MyFragmentRoot() {
+class ComicsFragment : MyFragmentRoot(), OnComicsClick {
 
     private lateinit var binding: FragmentComicsBinding
     private val viewModel: ComicsViewModel by activityViewModel()
@@ -39,10 +40,9 @@ class ComicsFragment : MyFragmentRoot() {
     private fun setAllComics() {
         viewModel.allComics().observe(viewLifecycleOwner) { allComics ->
             binding.comicsRecyclerView.layoutManager = GridLayoutManager(requireContext(),3)
-            binding.comicsRecyclerView.adapter = ComicsAdapter(allComics)
+            binding.comicsRecyclerView.adapter = ComicsAdapter(allComics, this)
 
             setSearchView(allComics)
-            Log.d("TAG", allComics.size.toString())
         }
     }
 
@@ -51,9 +51,7 @@ class ComicsFragment : MyFragmentRoot() {
             val viewPagerAdapter = ViewPagerAdapter(mainSectionComics)
             viewPager2.adapter = viewPagerAdapter
             val tabLayout = binding.tabLayout
-            TabLayoutMediator(tabLayout, viewPager2) { _, _ ->
-                Log.d("TABY comics", tabLayout.tabCount.toString())
-            }.attach()
+            TabLayoutMediator(tabLayout, viewPager2) { _, _ -> }.attach()
 
             setViewPagerInfinite(mainSectionComics.size + 2)
         }
@@ -89,11 +87,18 @@ class ComicsFragment : MyFragmentRoot() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val filtered = list.filter {
-                    newText!= null && it.title.contains(newText, true)
+                    newText != null && it.title.contains(newText, true)
                 }
                 (binding.comicsRecyclerView.adapter as ComicsAdapter).update(filtered)
                 return false
             }
         })
+    }
+
+    override fun onComicsClick(comic: ComicBook, position: Int) {
+        binding.tabLayout.removeTabAt(0)
+        val action = ComicsFragmentDirections.actionComicsFragmentToComicsDetailsFragment(comic.id)
+        findNavController().navigate(action)
+        binding.searchView.setQuery("", false)
     }
 }

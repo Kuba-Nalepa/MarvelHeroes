@@ -57,7 +57,7 @@
                 android:theme="@style/SearchViewStyle"
                 app:hideNavigationIcon="true"
                 app:iconifiedByDefault="false"
-                app:queryHint="@string/search_event_text"
+                app:queryHint="@string/search_comics_text"
                 app:searchIcon="@null" />
 
             <androidx.recyclerview.widget.RecyclerView

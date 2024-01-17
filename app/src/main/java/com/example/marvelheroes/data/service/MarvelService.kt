@@ -2,7 +2,6 @@ package com.example.marvelheroes.data.service
 
 import com.example.marvelheroes.data.model.MarvelResponse
 import com.example.marvelheroes.data.model.Character
-import com.example.marvelheroes.data.model.ComicBookItem
 import com.example.marvelheroes.BuildConfig
 import com.example.marvelheroes.data.model.ComicBook
 import com.example.marvelheroes.data.model.Creator
@@ -27,7 +26,7 @@ interface MarvelService {
     suspend fun getAllComics(): Response<MarvelResponse<ComicBook>>
 
     @GET("comics/{comicId}")
-    suspend fun getComicDetails(@Path("comicId") comicId: Int): Response<ComicBookItem>
+    suspend fun getComicDetails(@Path("comicId") comicId: Int): Response<MarvelResponse<ComicBook>>
 
     @GET("events?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getAllEvents(): Response<MarvelResponse<Event>>

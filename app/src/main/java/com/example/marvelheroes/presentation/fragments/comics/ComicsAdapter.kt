@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvelheroes.data.model.ComicBook
-import com.example.marvelheroes.data.model.Event
 import com.example.marvelheroes.databinding.EventCharacterListItemBinding
+import com.example.marvelheroes.presentation.fragments.comics.comicsDetails.OnComicsClick
 
 
-class ComicsAdapter(private var comicsList: List<ComicBook>
+class ComicsAdapter(private var comicsList: List<ComicBook>,
+    private val listener: OnComicsClick?
 ): RecyclerView.Adapter<ComicsAdapter.RecyclerViewHolder>() {
 
     inner class RecyclerViewHolder(binding: EventCharacterListItemBinding)
@@ -42,5 +43,9 @@ class ComicsAdapter(private var comicsList: List<ComicBook>
             .into(holder.eventImage)
 
         holder.eventTitle.text = comicsList[position].title
+
+        holder.itemView.setOnClickListener {
+            listener?.onComicsClick(comicsList[position], position)
+        }
     }
 }
