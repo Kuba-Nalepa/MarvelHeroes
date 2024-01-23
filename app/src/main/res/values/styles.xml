@@ -12,6 +12,10 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="LargeHeader">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="RegularFont">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>

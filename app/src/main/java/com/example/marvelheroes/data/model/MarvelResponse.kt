@@ -50,8 +50,8 @@ data class ComicBook (
     val title: String,
     @SerializedName("variantDescription")
     val variantDescription: String,
-    @SerializedName("description")
-    val description: String,
+    @SerializedName("textObjects")
+    val description: List<TextObject>,
     @SerializedName("resourceURI")
     val resourceURI: String,
     @SerializedName("urls")
@@ -70,7 +70,6 @@ data class ComicBook (
     val coverType: String
 
 )
-
 
 data class Event(
     @SerializedName("id")
@@ -149,14 +148,13 @@ enum class ItemType(val value: String) {
 
 
 data class Price (
-    val type: PriceType,
-    val price: Double
+    val price: Float
 )
 
-enum class PriceType {
-    DigitalPurchasePrice,
-    PrintPrice
-}
+data class TextObject (
+    @SerializedName("text")
+    val text: String
+)
 
 
 data class Thumbnail (
