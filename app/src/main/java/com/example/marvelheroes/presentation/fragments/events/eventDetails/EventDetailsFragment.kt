@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.example.marvelheroes.R
 import com.example.marvelheroes.data.model.Character
 import com.example.marvelheroes.databinding.FragmentEventDetailsBinding
-import com.example.marvelheroes.presentation.MyFragmentRoot
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import jp.wasabeef.glide.transformations.BlurTransformation
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -41,6 +40,11 @@ class EventDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
 
         setUi()
         setObservers()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.viewModelStore?.clear()
     }
 
     private fun setUi() {

@@ -120,6 +120,19 @@ tools:context=".presentation.fragments.comics.comicsDetails.ComicsDetailsFragmen
                 android:layout_marginBottom="5dp"
                 style="@style/SmallHeader"/>
 
+            <TextView
+                android:id="@+id/noCharactersDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/there_are_no_characters"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:textColor="@color/gray_600"
+                android:textAppearance="@color/gray_100"
+                android:visibility="invisible"
+                style="@style/LargeHeader"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comicsCharactersRecyclerView"
                 android:layout_width="wrap_content"
@@ -134,6 +147,19 @@ tools:context=".presentation.fragments.comics.comicsDetails.ComicsDetailsFragmen
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 style="@style/SmallHeader"/>
+
+            <TextView
+                android:id="@+id/noCreatorsDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/there_are_no_creators"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:textColor="@color/gray_600"
+                android:textAppearance="@color/gray_100"
+                android:visibility="invisible"
+                style="@style/LargeHeader"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comicsCreatorsRecyclerView"

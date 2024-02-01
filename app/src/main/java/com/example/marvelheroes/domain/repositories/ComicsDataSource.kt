@@ -2,6 +2,7 @@ package com.example.marvelheroes.domain.repositories
 
 import com.example.marvelheroes.data.model.Character
 import com.example.marvelheroes.data.model.ComicBook
+import com.example.marvelheroes.data.model.Creator
 import com.example.marvelheroes.data.model.MarvelResponse
 
 interface ComicsDataSource {
@@ -11,4 +12,6 @@ interface ComicsDataSource {
     suspend fun getComicsDetails(id: Int): MarvelResponse<ComicBook>
 
     suspend fun getComicsCharacters(id: Int): MarvelResponse<Character>
+
+    suspend fun getComicsCreators(id: Int) : MarvelResponse<Creator>
 }

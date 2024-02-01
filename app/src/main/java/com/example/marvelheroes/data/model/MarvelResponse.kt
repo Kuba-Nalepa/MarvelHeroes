@@ -106,17 +106,11 @@ data class Creator(
     val id: Int?,
     @SerializedName("name")
     val name: String?,
+    @SerializedName("fullName")
+    val fullName: String?,
     @SerializedName("role")
     val role: String?
 )
-
-//data class  FeaturingCharacter (
-//    @SerializedName("resourceURI")
-//    val resourceURI: String,
-//    @SerializedName("name")
-//    val name: String
-//)
-
 
 data class Stories (
     @SerializedName("available")

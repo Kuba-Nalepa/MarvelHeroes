@@ -36,9 +36,15 @@ class ComicsDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
 
         vm.getComicsDetails(navigationArgs.id)
         vm.getComicCharacters(navigationArgs.id)
+        vm.getComicsCreators(navigationArgs.id)
 
         setUi()
         setObservers()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.viewModelStore?.clear()
     }
 
     private fun setUi() {
@@ -71,7 +77,17 @@ class ComicsDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
 
             vm.comicCharacters.observe(viewLifecycleOwner) { characters ->
                 comicsCharactersRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                comicsCharactersRecyclerView.adapter = ComicsCharactersAdapter(characters, this@ComicsDetailsFragment)
+                comicsCharactersRecyclerView.adapter =
+                    characters?.let { ComicsCharactersAdapter(it, this@ComicsDetailsFragment) }
+
+                noCharactersDescription.isVisible = characters.isNullOrEmpty() && vm.isLoading.value == false
+
+            }
+
+            vm.comicCreators.observe(viewLifecycleOwner) { creators ->
+                comicsCreatorsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                comicsCreatorsRecyclerView.adapter = creators?.let { ComicsCreatorsAdapter(it) }
+                noCreatorsDescription.isVisible = creators.isNullOrEmpty() && vm.isLoading.value == false
             }
 
             vm.isLoading.observe(viewLifecycleOwner) {

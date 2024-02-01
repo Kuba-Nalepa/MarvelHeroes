@@ -1,21 +1,23 @@
 package com.example.marvelheroes.domain.usecases
 
-import com.example.marvelheroes.data.model.Character
+import com.example.marvelheroes.data.model.Creator
 import com.example.marvelheroes.data.repositoriesImpl.ComicsDataSourceImpl
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetComicsCharactersUseCase(
+class GetComicsCreatorsUseCase(
     private val comicsDataSourceImpl: ComicsDataSourceImpl
 ) {
-    suspend fun execute(id: Int): Flow<Result<List<Character>>> = flow {
+    suspend fun execute(id: Int) : Flow<Result<List<Creator>>> = flow {
         try {
-            val comicsCharacters = comicsDataSourceImpl.getComicsCharacters(id).marvelData.results
-            emit(Result.success(comicsCharacters))
+            val creators = comicsDataSourceImpl.getComicsCreators(id).marvelData.results
+            emit(Result.success(creators))
+
         }
         catch (error: IllegalStateException) {
             emit(Result.failure(error))
         }
+
 
     }
 }

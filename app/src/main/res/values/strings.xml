@@ -29,4 +29,6 @@
     <string name="creators">Creators</string>
     <string name="browse_comics_text">Browse comics…</string>
     <string name="comics_price">%.2f $</string>
+    <string name="there_are_no_characters">There are no characters</string>
+    <string name="there_are_no_creators">There are no creators</string>
 </resources>

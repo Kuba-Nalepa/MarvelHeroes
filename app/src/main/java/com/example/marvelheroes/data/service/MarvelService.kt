@@ -31,6 +31,9 @@ interface MarvelService {
     @GET("comics/{comicId}/characters?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getComicCharacters(@Path("comicId") comicId: Int): Response<MarvelResponse<Character>>
 
+    @GET("comics/{comicId}/creators?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
+    suspend fun getComicCreators(@Path("comicId") comicId: Int): Response<MarvelResponse<Creator>>
+
     @GET("events?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getAllEvents(): Response<MarvelResponse<Event>>
 

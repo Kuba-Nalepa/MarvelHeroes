@@ -2,6 +2,7 @@ package com.example.marvelheroes.data.repositoriesImpl
 
 import com.example.marvelheroes.data.model.Character
 import com.example.marvelheroes.data.model.ComicBook
+import com.example.marvelheroes.data.model.Creator
 import com.example.marvelheroes.data.model.MarvelResponse
 import com.example.marvelheroes.domain.repositories.ComicsDataSource
 import com.example.marvelheroes.data.service.MarvelService
@@ -34,6 +35,17 @@ class ComicsDataSourceImpl(
         val response = marvelService.getComicCharacters(id)
         if (response.isSuccessful) {
             return response.body() ?: throw IllegalArgumentException("Failed to return Marvel comic book characters")
+
+        }
+        else {
+            throw RuntimeException(response.errorBody().toString())
+        }
+    }
+
+    override suspend fun getComicsCreators(id: Int): MarvelResponse<Creator> {
+        val response = marvelService.getComicCreators(id)
+        if (response.isSuccessful) {
+            return response.body() ?: throw IllegalArgumentException("Failed to return Marvel comic book creators")
 
         }
         else {

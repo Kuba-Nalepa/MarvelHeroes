@@ -10,6 +10,7 @@ import com.example.marvelheroes.domain.usecases.GetCharactersListUseCase
 import com.example.marvelheroes.domain.usecases.GetComicsUseCase
 import com.example.marvelheroes.domain.usecases.GetCharactersEventUseCase
 import com.example.marvelheroes.domain.usecases.GetComicsCharactersUseCase
+import com.example.marvelheroes.domain.usecases.GetComicsCreatorsUseCase
 import com.example.marvelheroes.domain.usecases.GetComicsDetailsUseCase
 import com.example.marvelheroes.domain.usecases.GetCreatorsRoleUseCase
 import com.example.marvelheroes.domain.usecases.GetEventCreatorsUseCase
@@ -55,6 +56,7 @@ class MarvelHeroesApplication : Application() {
         single { GetComicsUseCase(get()) }
         single { GetComicsDetailsUseCase(get()) }
         single { GetComicsCharactersUseCase(get()) }
+        single { GetComicsCreatorsUseCase(get()) }
         single { GetEventsListUseCase(get()) }
         single { GetEventDetailsUseCase(get()) }
         single { GetEventCreatorsUseCase(get()) }
@@ -64,7 +66,7 @@ class MarvelHeroesApplication : Application() {
     private val viewModelModule = module {
         viewModel { CharactersViewModel(get()) }
         viewModel { ComicsViewModel(get()) }
-        viewModel { ComicsDetailsViewModel(get(), get()) }
+        viewModel { ComicsDetailsViewModel(get(), get(), get()) }
         viewModel { EventsViewModel(get()) }
         viewModel { EventDetailsViewModel(get(), get(), get(), get()) }
     }
