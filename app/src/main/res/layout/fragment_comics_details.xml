@@ -158,7 +158,7 @@ tools:context=".presentation.fragments.comics.comicsDetails.ComicsDetailsFragmen
                 android:layout_gravity="center"
                 android:textColor="@color/gray_600"
                 android:textAppearance="@color/gray_100"
-                android:visibility="invisible"
+                android:visibility="gone"
                 style="@style/LargeHeader"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -182,6 +182,7 @@ tools:context=".presentation.fragments.comics.comicsDetails.ComicsDetailsFragmen
                 android:text="@string/show_more"
                 android:clickable="true"
                 android:focusable="true"
+                android:visibility="invisible"
                 android:background="?attr/selectableItemBackground"
                 android:layout_gravity="end"/>
 

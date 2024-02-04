@@ -42,11 +42,6 @@ class ComicsDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
         setObservers()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        activity?.viewModelStore?.clear()
-    }
-
     private fun setUi() {
         binding.apply {
 
@@ -56,6 +51,9 @@ class ComicsDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
                 findNavController().navigateUp()
             }
 
+            expandCreators.setOnClickListener {
+                vm.getFiveMoreCreators(navigationArgs.id)
+            }
         }
     }
 
@@ -87,13 +85,15 @@ class ComicsDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
             vm.comicCreators.observe(viewLifecycleOwner) { creators ->
                 comicsCreatorsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 comicsCreatorsRecyclerView.adapter = creators?.let { ComicsCreatorsAdapter(it) }
-                noCreatorsDescription.isVisible = creators.isNullOrEmpty() && vm.isLoading.value == false
+                if(creators.isNullOrEmpty() && vm.isLoading.value == false) {
+                    noCreatorsDescription.visibility = View.VISIBLE
+                    expandCreators.isVisible = creators?.size!! < 20
+                }
             }
 
             vm.isLoading.observe(viewLifecycleOwner) {
                 progressBar.isVisible = it
                 expandCreators.isVisible = !it
-
             }
         }
     }

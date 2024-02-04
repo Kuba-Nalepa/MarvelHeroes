@@ -58,16 +58,23 @@ class ComicsDetailsViewModel(
         }
     }
 
-    fun getComicsCreators(id: Int) {
+    fun getComicsCreators(id: Int, quantity: Int = 5) {
         _isLoading.postValue(true)
         viewModelScope.launch {
             getComicsCreatorsUseCase.execute(id).collect() { result ->
                 if(result.isSuccess) {
-                    val creators = result.getOrNull()
+                    val creators = result.getOrNull()?.take(quantity)
                     _isLoading.postValue(false)
                     _comicCreators.postValue(creators)
                 }
             }
         }
     }
+
+    fun getFiveMoreCreators(eventId: Int) {
+        _isLoading.postValue(true)
+        _comicCreators.value?.size?.let { getComicsCreators(eventId, it + 5) }
+
+    }
+
 }

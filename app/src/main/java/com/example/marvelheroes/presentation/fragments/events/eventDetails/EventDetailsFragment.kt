@@ -42,11 +42,6 @@ class EventDetailsFragment : OnCharacterClick, BottomSheetDialogFragment() {
         setObservers()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        activity?.viewModelStore?.clear()
-    }
-
     private fun setUi() {
         binding.apply {
 
