@@ -1,6 +1,5 @@
 package com.example.marvelheroes.presentation.fragments.comics
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,28 +9,30 @@ import kotlinx.coroutines.launch
 
 class ComicsViewModel(
     private val getComicsUseCase: GetComicsUseCase
-): ViewModel() {
+) : ViewModel() {
     private val _allComics = MutableLiveData<List<ComicBook>>()
+    val allComics = _allComics
     private val _homePageComics = MutableLiveData<List<ComicBook>>()
-
-    fun homePageComics() =_homePageComics as LiveData<List<ComicBook>>
-
-    fun allComics() = _allComics as LiveData<List<ComicBook>>
+    val homePageCOmics = _homePageComics
+    // dodaj zmienna tu
+    // zmien wszystke funkcje na suspendowe funkcje w viewmodelach wszystkich
 
     init {
         viewModelScope.launch {
-            getComicsUseCase.execute().collect { comicsList ->
+            fetchComicsList()
+        }
+    }
 
-                val filteredComicList = comicsList.filter { comicBook ->
-                    !comicBook.thumbnail.path.endsWith("image_not_available")
-                }
+    private suspend fun fetchComicsList() {
+        getComicsUseCase.execute().collect { comicsList ->
 
-                val mainSectionComics = filteredComicList.shuffled().take(3)
-
-                _homePageComics.postValue(mainSectionComics)
-
-                _allComics.postValue(filteredComicList)
+            val filteredComicList = comicsList.filter { comicBook ->
+                !comicBook.thumbnail.path.endsWith("image_not_available")
             }
+            val mainSectionComics = filteredComicList.shuffled().take(3)
+
+            _homePageComics.postValue(mainSectionComics)
+            _allComics.postValue(filteredComicList)
         }
     }
 

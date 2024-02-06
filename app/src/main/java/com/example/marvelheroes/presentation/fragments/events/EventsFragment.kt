@@ -39,19 +39,19 @@ class EventsFragment : MyFragmentRoot() , OnEventClick {
     }
 
     private fun setViewPager(viewPager2: ViewPager2) {
-        viewModel.homePageEvents().observe(viewLifecycleOwner) { mainSectionEvents ->
+        viewModel.mainSectionEvents.observe(viewLifecycleOwner) { mainSectionEvents ->
             val viewPagerAdapter = ViewPagerAdapter(mainSectionEvents)
-            viewPager2.adapter = viewPagerAdapter
             val tabLayout = binding.tabLayout
-            TabLayoutMediator(tabLayout, viewPager2) { _, _ -> }.attach()
 
+            viewPager2.adapter = viewPagerAdapter
+            TabLayoutMediator(tabLayout, viewPager2) { _, _ -> }.attach()
             setViewPagerInfinite(mainSectionEvents.size + 2)
 
         }
     }
 
     private fun setAllEvents() {
-        viewModel.allEvents().observe(viewLifecycleOwner) { allEvents ->
+        viewModel.allEvents.observe(viewLifecycleOwner) { allEvents ->
             binding.eventsRecyclerView.layoutManager = GridLayoutManager(requireContext(),3)
             binding.eventsRecyclerView.adapter = EventsAdapter(allEvents, this)
 

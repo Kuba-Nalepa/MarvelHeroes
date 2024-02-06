@@ -38,7 +38,7 @@ class ComicsFragment : MyFragmentRoot(), OnComicsClick {
     }
 
     private fun setAllComics() {
-        viewModel.allComics().observe(viewLifecycleOwner) { allComics ->
+        viewModel.allComics.observe(viewLifecycleOwner) { allComics ->
             binding.comicsRecyclerView.layoutManager = GridLayoutManager(requireContext(),3)
             binding.comicsRecyclerView.adapter = ComicsAdapter(allComics, this)
 
@@ -47,7 +47,8 @@ class ComicsFragment : MyFragmentRoot(), OnComicsClick {
     }
 
     private fun setViewPager(viewPager2: ViewPager2) {
-        viewModel.homePageComics().observe(viewLifecycleOwner) { mainSectionComics ->
+
+        viewModel.homePageCOmics.observe(viewLifecycleOwner) { mainSectionComics ->
             val viewPagerAdapter = ViewPagerAdapter(mainSectionComics)
             viewPager2.adapter = viewPagerAdapter
             val tabLayout = binding.tabLayout

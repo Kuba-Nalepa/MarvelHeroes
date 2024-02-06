@@ -1,4 +1,4 @@
-package com.example.marvelheroes
+package com.example.marvelheroes.di
 
 import android.app.Application
 import com.example.marvelheroes.data.repositoriesImpl.CharacterDataSourceImpl
