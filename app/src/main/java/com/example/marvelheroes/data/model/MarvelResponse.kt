@@ -22,6 +22,8 @@ data class MarvelData<T>(
     val offset: Long,
     @SerializedName("total")
     val total: Long,
+    @SerializedName("limit")
+    val limit: Int,
     @SerializedName("results")
     val results: List<T>
 )

@@ -26,6 +26,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+
 class MarvelHeroesApplication : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -49,7 +50,7 @@ class MarvelHeroesApplication : Application() {
     }
 
     private val domainModule = module {
-        // Usecases
+        // Use cases
         single { GetCharacterDetailsUseCase(get()) }
         single { GetCharactersListUseCase(get()) }
         single { GetCharactersEventUseCase(get()) }

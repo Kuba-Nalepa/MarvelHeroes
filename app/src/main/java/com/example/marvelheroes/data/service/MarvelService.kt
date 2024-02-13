@@ -13,11 +13,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MarvelService {
 
     @GET("characters?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
-    suspend fun getAllCharacters(): Response<MarvelResponse<Character>>
+    suspend fun getCharacters(@Query("limit") limit: Int = 100): Response<MarvelResponse<Character>>
 
     @GET("characters/{characterId}?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getCharacterDetails(@Path("characterId") characterId: Int): Response<MarvelResponse<Character>>

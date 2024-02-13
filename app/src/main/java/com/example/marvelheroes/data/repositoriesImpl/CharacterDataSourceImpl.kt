@@ -8,8 +8,8 @@ import com.example.marvelheroes.data.service.MarvelService
 class CharacterDataSourceImpl(
 private val marvelService: MarvelService
 ): CharacterDataSource {
-    override suspend fun getAllCharacters(): MarvelResponse<Character> {
-        val response = marvelService.getAllCharacters()
+    override suspend fun getCharacters(): MarvelResponse<Character> {
+        val response = marvelService.getCharacters()
         if (response.isSuccessful) {
             return response.body() ?: throw IllegalArgumentException("Failed to return Marvel characters")
         }

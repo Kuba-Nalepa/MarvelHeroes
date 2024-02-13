@@ -14,8 +14,6 @@ class ComicsViewModel(
     val allComics = _allComics
     private val _homePageComics = MutableLiveData<List<ComicBook>>()
     val homePageCOmics = _homePageComics
-    // dodaj zmienna tu
-    // zmien wszystke funkcje na suspendowe funkcje w viewmodelach wszystkich
 
     init {
         viewModelScope.launch {

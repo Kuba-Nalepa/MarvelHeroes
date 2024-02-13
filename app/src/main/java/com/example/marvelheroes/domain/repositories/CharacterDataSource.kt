@@ -5,7 +5,7 @@ import com.example.marvelheroes.data.model.MarvelResponse
 
 interface CharacterDataSource {
 
-    suspend fun getAllCharacters(): MarvelResponse<Character>
+    suspend fun getCharacters(): MarvelResponse<Character>
 
     suspend fun getCharacterDetails(id: Int): MarvelResponse<Character>
 

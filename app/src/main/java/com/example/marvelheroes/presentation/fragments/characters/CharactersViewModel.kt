@@ -16,9 +16,13 @@ class CharactersViewModel(
 
     init {
         viewModelScope.launch {
-            getCharactersListUseCase.execute().collect { charactersList ->
-                _characters.postValue(charactersList)
-            }
+            getCharacters()
+        }
+    }
+
+    private suspend fun getCharacters() {
+        getCharactersListUseCase.execute().collect { characters ->
+            _characters.postValue(characters)
         }
     }
 }
