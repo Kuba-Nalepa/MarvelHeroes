@@ -1,6 +1,7 @@
 package com.example.marvelheroes.data.repositoriesImpl
 
 import com.example.marvelheroes.data.model.Character
+import com.example.marvelheroes.data.model.ComicBook
 import com.example.marvelheroes.data.model.MarvelResponse
 import com.example.marvelheroes.domain.repositories.CharacterDataSource
 import com.example.marvelheroes.data.service.MarvelService
@@ -20,6 +21,16 @@ private val marvelService: MarvelService
 
     override suspend fun getCharacterDetails(id: Int): MarvelResponse<Character> {
         val response = marvelService.getCharacterDetails(id)
+        if (response.isSuccessful) {
+            return response.body() ?: throw IllegalArgumentException("Failed to return character details")
+        }
+        else {
+            throw RuntimeException(response.message().toString())
+        }
+    }
+
+    override suspend fun getCharacterComics(id: Int): MarvelResponse<ComicBook> {
+        val response = marvelService.getCharacterComics(id)
         if (response.isSuccessful) {
             return response.body() ?: throw IllegalArgumentException("Failed to return character details")
         }

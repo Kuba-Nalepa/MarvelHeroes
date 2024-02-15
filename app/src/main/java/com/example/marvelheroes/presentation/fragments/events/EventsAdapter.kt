@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvelheroes.data.model.Event
-import com.example.marvelheroes.databinding.EventCharacterListItemBinding
+import com.example.marvelheroes.databinding.ListItemBinding
 
 
 class EventsAdapter(private var eventsList: List<Event>,
                     private val listener: OnEventClick?
 ): RecyclerView.Adapter<EventsAdapter.RecyclerViewHolder>() {
 
-    inner class RecyclerViewHolder(binding: EventCharacterListItemBinding)
+    inner class RecyclerViewHolder(binding: ListItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
         val eventImage = binding.image
         val eventTitle = binding.title
@@ -25,7 +25,7 @@ class EventsAdapter(private var eventsList: List<Event>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val viewHolder = EventCharacterListItemBinding.inflate(layoutInflater, parent, false)
+        val viewHolder = ListItemBinding.inflate(layoutInflater, parent, false)
         return  RecyclerViewHolder(viewHolder)
     }
 

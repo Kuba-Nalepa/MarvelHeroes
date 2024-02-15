@@ -4,12 +4,16 @@ package com.example.marvelheroes.presentation.fragments.characters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvelheroes.data.model.Character
+import com.example.marvelheroes.data.model.ComicBook
 import com.example.marvelheroes.databinding.CharacterItemBinding
 
-class CharactersViewPagerAdapter(private val characterList: List<Character>):RecyclerView.Adapter<CharactersViewPagerAdapter.ViewPagerViewHolder>() {
+class CharactersViewPagerAdapter(
+    private val characterMap: Map<Character,List<ComicBook>>
+):RecyclerView.Adapter<CharactersViewPagerAdapter.ViewPagerViewHolder>() {
 
     private lateinit var context: Context
 
@@ -24,16 +28,22 @@ class CharactersViewPagerAdapter(private val characterList: List<Character>):Rec
     }
 
     override fun onBindViewHolder(holder: CharactersViewPagerAdapter.ViewPagerViewHolder, position: Int) {
+        val characterList = characterMap.keys.toList()
+        val character = characterList[position]
 
-        holder.characterName.text = characterList[position].name
-        holder.characterDescription.text = characterList[position].description
-        val currentImagePath = characterList[position].thumbnail?.path
-        val currentImageExtension = characterList[position].thumbnail?.extension
+        holder.characterName.text = character.name
+        holder.characterDescription.text = character.description
+        val currentImagePath = character.thumbnail?.path
+        val currentImageExtension = character.thumbnail?.extension
         val currentImage = "$currentImagePath.$currentImageExtension".replaceFirst("http","https")
         Glide.with(holder.itemView)
             .load(currentImage)
             .fitCenter()
             .into(holder.characterImage)
+
+        holder.comicsRecycler.layoutManager = GridLayoutManager(context,3)
+        holder.comicsRecycler.adapter = characterMap[character]
+            ?.let { CharactersComicsAdapter(it) }
 
         holder.itemView.setOnClickListener {
 
@@ -41,12 +51,13 @@ class CharactersViewPagerAdapter(private val characterList: List<Character>):Rec
     }
 
     override fun getItemCount(): Int {
-        return characterList.size
+        return characterMap.size
     }
 
     inner class ViewPagerViewHolder(binding: CharacterItemBinding): RecyclerView.ViewHolder(binding.root) {
         val characterImage = binding.characterImage
         val characterName = binding.characterName
         val characterDescription = binding.characterDescription
+        var comicsRecycler = binding.comicsRecyclerView
     }
 }

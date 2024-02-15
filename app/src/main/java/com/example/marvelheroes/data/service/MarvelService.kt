@@ -23,6 +23,9 @@ interface MarvelService {
     @GET("characters/{characterId}?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getCharacterDetails(@Path("characterId") characterId: Int): Response<MarvelResponse<Character>>
 
+    @GET("characters/{characterId}/comics?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
+    suspend fun getCharacterComics(@Path("characterId") characterId: Int): Response<MarvelResponse<ComicBook>>
+
     @GET("comics?ts=1&apikey=${BuildConfig.PUBLIC_API}&hash=${BuildConfig.MD5_HASH}")
     suspend fun getAllComics(): Response<MarvelResponse<ComicBook>>
 

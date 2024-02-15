@@ -64,7 +64,7 @@
                 android:id="@+id/comicsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/event_character_list_item">
+                tools:listitem="@layout/list_item">
 
             </androidx.recyclerview.widget.RecyclerView>
 

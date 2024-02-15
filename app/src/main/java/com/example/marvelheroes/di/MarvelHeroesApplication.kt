@@ -5,6 +5,7 @@ import com.example.marvelheroes.data.repositoriesImpl.CharacterDataSourceImpl
 import com.example.marvelheroes.data.repositoriesImpl.ComicsDataSourceImpl
 import com.example.marvelheroes.data.repositoriesImpl.EventsDataSourceImpl
 import com.example.marvelheroes.data.service.MarvelService
+import com.example.marvelheroes.domain.usecases.GetCharacterComicsUseCase
 import com.example.marvelheroes.domain.usecases.GetCharacterDetailsUseCase
 import com.example.marvelheroes.domain.usecases.GetCharactersListUseCase
 import com.example.marvelheroes.domain.usecases.GetComicsUseCase
@@ -54,6 +55,7 @@ class MarvelHeroesApplication : Application() {
         single { GetCharacterDetailsUseCase(get()) }
         single { GetCharactersListUseCase(get()) }
         single { GetCharactersEventUseCase(get()) }
+        single { GetCharacterComicsUseCase(get()) }
         single { GetComicsUseCase(get()) }
         single { GetComicsDetailsUseCase(get()) }
         single { GetComicsCharactersUseCase(get()) }
@@ -65,7 +67,7 @@ class MarvelHeroesApplication : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { CharactersViewModel(get()) }
+        viewModel { CharactersViewModel(get(), get()) }
         viewModel { ComicsViewModel(get()) }
         viewModel { ComicsDetailsViewModel(get(), get(), get()) }
         viewModel { EventsViewModel(get()) }

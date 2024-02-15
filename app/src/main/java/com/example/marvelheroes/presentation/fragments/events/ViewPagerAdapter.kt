@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvelheroes.data.model.Event
-import com.example.marvelheroes.databinding.CarouselSeriesItemBinding
+import com.example.marvelheroes.databinding.CarouselItemBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 class ViewPagerAdapter(listEvents: List<Event>):RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
@@ -20,7 +20,7 @@ class ViewPagerAdapter(listEvents: List<Event>):RecyclerView.Adapter<ViewPagerAd
         viewType: Int
     ): ViewPagerAdapter.ViewPagerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val viewHolder = CarouselSeriesItemBinding.inflate(layoutInflater, parent, false)
+        val viewHolder = CarouselItemBinding.inflate(layoutInflater, parent, false)
         context = parent.context
         return ViewPagerViewHolder(viewHolder)
     }
@@ -48,7 +48,7 @@ class ViewPagerAdapter(listEvents: List<Event>):RecyclerView.Adapter<ViewPagerAd
         return fakeList.size
     }
 
-    inner class ViewPagerViewHolder(binding: CarouselSeriesItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewPagerViewHolder(binding: CarouselItemBinding): RecyclerView.ViewHolder(binding.root) {
         val image = binding.carouselImage
         val title = binding.titleName
         val backgroundImage = binding.backgroundImage

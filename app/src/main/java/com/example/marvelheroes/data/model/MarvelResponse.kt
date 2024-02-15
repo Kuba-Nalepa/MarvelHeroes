@@ -31,7 +31,7 @@ data class MarvelData<T>(
 
 data class Character (
     @SerializedName("id")
-    val id: Long? = null,
+    val id: Int? = null,
     @SerializedName("name")
     val name: String? = null,
     @SerializedName("description")
@@ -112,6 +112,17 @@ data class Creator(
     val fullName: String?,
     @SerializedName("role")
     val role: String?
+)
+
+data class Comics (
+    @SerializedName("available")
+    val available: Long,
+    @SerializedName("collectionURI")
+    val collectionURI: String,
+    @SerializedName("items")
+    val items: List<StoriesItem>,
+    @SerializedName("returned")
+    val returned: Long
 )
 
 data class Stories (
