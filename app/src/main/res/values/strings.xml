@@ -31,4 +31,5 @@
     <string name="comics_price">%.2f $</string>
     <string name="there_are_no_characters">There are no characters</string>
     <string name="there_are_no_creators">There are no creators</string>
+    <string name="comics_the_character_featured_in">Comics The Character featured in</string>
 </resources>
